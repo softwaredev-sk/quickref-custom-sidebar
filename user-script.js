@@ -19,9 +19,9 @@
   const originalcontentContainer = document.createElement('div');
   originalcontentContainer.classList.add('modified-content');
   originalcontentContainer.style.cssText = `
-    display: flex;
-    flex-direction: column;
-    `;
+  display: flex;
+  flex-direction: column;
+  `;
 
   originalcontentContainer.appendChild(originalHeader);
   originalcontentContainer.appendChild(originalContent);
@@ -29,31 +29,31 @@
   const customContainer = document.createElement('div');
   customContainer.classList.add('customContainer');
   customContainer.style.cssText = `
-    display: flex;
-    align-items: stretch;
-    `;
+  display: flex;
+  align-items: stretch;
+  `;
 
   const startSidebarMinWidth = '40';
   const hoverSidebarMinWidth = '140';
   const customSidebar = document.createElement('div');
   customSidebar.classList.add('custom-sidebar', 'home');
   customSidebar.style.cssText = `
-    min-width: ${startSidebarMinWidth};
-    max-width: ${startSidebarMinWidth};
-    min-height: 100vh;
-    max-height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    transition: min-width 0.2s linear, max-width 0.2s linear;
-    overflow-y: auto;
-    padding: 4px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    `;
+  min-width: ${startSidebarMinWidth};
+  max-width: ${startSidebarMinWidth};
+  min-height: 100vh;
+  max-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  transition: min-width 0.2s linear, max-width 0.2s linear;
+  overflow-y: auto;
+  padding: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  `;
 
   const fillerSidebar = customSidebar.cloneNode(true);
   fillerSidebar.classList.add('custom-filler-sidebar');
@@ -65,112 +65,115 @@
 
   const style = document.createElement('style');
   style.textContent = `
-    .custom-sidebar.home,
-    .custom-filler-sidebar {
-    background-color: inherit;
-    min-width: ${startSidebarMinWidth}px;
-    max-width: ${startSidebarMinWidth}px;
-    opacity: 0.25
-    }
+  .custom-sidebar.home,
+  .custom-filler-sidebar {
+  background-color: inherit;
+  min-width: ${startSidebarMinWidth}px;
+  max-width: ${startSidebarMinWidth}px;
+  opacity: 0.25
+  }
 
-    .custom-sidebar.home:hover,
-    body:has(.custom-sidebar.home:hover) .custom-filler-sidebar {
-    opacity: 1;
-    min-width: 20vw;
-    max-width: 20vw;
-    }
+  .custom-sidebar.home:hover,
+  body:has(.custom-sidebar.home:hover) .custom-filler-sidebar,
+  .custom-sidebar:has(input:focus),
+  body:has(.custom-sidebar input:focus) .custom-filler-sidebar {
+  opacity: 1;
+  min-width: 20vw;
+  max-width: 20vw;
+  }
 
-    .custom-sidebar.home:hover {
-    border-right: 2px solid #d1d5d9;
-    }
+  .custom-sidebar.home:hover {
+  border-right: 2px solid #d1d5d9;
+  }
 
-    .active-tab {
-    outline: 2px solid #fafafa;
-    }
+  .active-tab {
+  outline: 2px solid #fafafa;
+  }
 
-    .custom-filler-sidebar {
-    position: relative !important;
-    background-color: transparent !important;
-    }
+  .custom-filler-sidebar {
+  position: relative !important;
+  background-color: transparent !important;
+  }
 
-    .dark .custom-sidebar.home:hover {
-    border-right: 2px solid #0a1024;
-    }
+  .dark .custom-sidebar.home:hover {
+  border-right: 2px solid #0a1024;
+  }
 
-    .sidebar-card-header {
-    display: block !important;
-    color: black !important;
-    background: #ffffff10 !important;
-    cursor: default !important;
-    margin: 0;
-    border-radius: 0 !important;
-    margin-bottom: 1em;
-    padding: 4px !important;
-    text-align: center !important;
-    }
+  .sidebar-card-header {
+  display: block !important;
+  color: black !important;
+  background: #ffffff10 !important;
+  cursor: default !important;
+  margin: 0;
+  border-radius: 0 !important;
+  margin-bottom: 1em;
+  padding: 4px !important;
+  text-align: center !important;
+  }
 
-    .dark .sidebar-card-header {
-    color: white !important;
-    }
+  .dark .sidebar-card-header {
+  color: white !important;
+  }
 
-    .sidebar-custom-hr {
-    margin: 1em;
-    border: none;
-    border-top: 2px dotted #ffffff80;
-    }
+  .sidebar-custom-hr {
+  margin: 1em;
+  border: none;
+  border-top: 2px dotted #ffffff80;
+  }
 
-    .custom-card-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-    }
+  .custom-card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+  }
 
-    .custom-sidebar.home:hover .custom-card-container {
-        justify-content: center;
-    }
+  .custom-sidebar:has(input:focus) .custom-card-container,
+  .custom-sidebar.home:hover .custom-card-container {
+      justify-content: center;
+  }
 
 
-    .home .card {
-	transition-duration: 100ms;
-	animation-name: enter;
-	--tw-enter-opacity: initial;
-	--tw-enter-scale: initial;
-	--tw-enter-rotate: initial;
-	--tw-enter-translate-x: initial;
-	--tw-enter-translate-y: initial;
-	--tw-enter-opacity: 0;
-	animation-duration: 100ms;
-	position: relative;
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	border-radius: 0.5rem;
-	--tw-bg-opacity: .65;
-	padding: 1rem;
-	color: rgb(15 23 42/0.9);
-	--tw-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
-	--tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-	box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+  .home .card {
+transition-duration: 100ms;
+animation-name: enter;
+--tw-enter-opacity: initial;
+--tw-enter-scale: initial;
+--tw-enter-rotate: initial;
+--tw-enter-translate-x: initial;
+--tw-enter-translate-y: initial;
+--tw-enter-opacity: 0;
+animation-duration: 100ms;
+position: relative;
+display: flex;
+cursor: pointer;
+align-items: center;
+border-radius: 0.5rem;
+--tw-bg-opacity: .65;
+padding: 1rem;
+color: rgb(15 23 42/0.9);
+--tw-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+--tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
 }
 
 .home .card > p {
-	margin-left: 0.5rem;
-	max-width: 75%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
+margin-left: 0.5rem;
+max-width: 75%;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+font-size: 0.875rem;
+line-height: 1.25rem;
 }
 .home .card:hover {
-	--tw-bg-opacity: 1;
-	color: rgb(241 245 249/0.9);
-	--tw-shadow: 0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);
-	--tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color),0 10px 10px -5px var(--tw-shadow-color);
+--tw-bg-opacity: 1;
+color: rgb(241 245 249/0.9);
+--tw-shadow: 0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);
+--tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color),0 10px 10px -5px var(--tw-shadow-color);
 }
 
 .bg-\[\#4aa181\] {
-	--tw-bg-opacity: 1;
+--tw-bg-opacity: 1;
 }
 `;
   style.id = 'custom-sidebar-sk';
@@ -187,11 +190,11 @@
         header.classList.add('card', 'sidebar-card-header');
         header.textContent = key;
         header.style.cssText = `
-        white-space: nowrap;
-        text-transform: uppercase;
-        text-align: center;
-        max-width: 100%;
-        `;
+      white-space: nowrap;
+      text-transform: uppercase;
+      text-align: center;
+      max-width: 100%;
+      `;
         customSidebar.appendChild(header);
 
         const content = document.createElement('div');
@@ -205,16 +208,17 @@
             .at(-1)
             .slice(0, -1);
           refNode.style.cssText = `
-            color: inherit;
-            margin-bottom: 2px;
-            display: block;
-            text-align: center;
-            min-width: 60px;
-            width: calc(50% - 10px);
-            `;
+          color: inherit;
+          margin-bottom: 2px;
+          display: block;
+          text-align: center;
+          min-width: 60px;
+          width: calc(50% - 10px);
+          `;
           const div = document.createElement('div');
           div.className = ref.cardClass;
           const p = document.createElement('p');
+          p.classList.add('custom-card-identifier');
           p.textContent = ref.title;
           p.style.whiteSpace = 'nowrap';
           refNode.appendChild(div);
@@ -232,6 +236,40 @@
       }
     });
 
+  const search = document.createElement('input');
+  search.type = 'search';
+  search.autoComplete = 'off';
+  search.placeholder = 'Search...';
+  search.style.padding = '4px 4px';
+  search.style.marginBottom = '6px';
+  search.addEventListener('input', function (e) {
+    const query = e.target.value.trim().toLowerCase();
+    if (!query) {
+      resetSearch();
+      return;
+    }
+
+    document.querySelectorAll('.custom-card-identifier').forEach((text) => {
+      if (text.textContent.toLowerCase().includes(query)) {
+        text.closest('a').style.display = 'block';
+      } else {
+        text.closest('a').style.display = 'none';
+      }
+    });
+  });
+
+  function resetSearch() {
+    document.querySelectorAll('.custom-card-identifier').forEach((text) => {
+      text.closest('a').style.display = '';
+    });
+  }
+
+  customSidebar.insertBefore(search, customSidebar.firstChild);
   document.body.appendChild(customSidebar);
   document.head.appendChild(style);
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('input')) {
+      search.blur();
+    }
+  });
 })();
